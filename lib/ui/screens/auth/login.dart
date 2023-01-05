@@ -1,5 +1,6 @@
 import 'package:amt/data/common/colors.dart';
 import 'package:amt/data/common/constants.dart';
+import 'package:amt/ui/screens/home/home.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -83,31 +84,38 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 22,
             ),
-            Container(
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius:
-                      BorderRadius.circular(ThemeConstants.borderRadius)),
-              width: MediaQuery.of(context).size.width,
-              height: 65,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Continue',
-                    style: TextStyle(
-                      color: Color(0xffffffff),
-                      fontWeight: FontWeight.bold,
+            InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => HomeScreen(),
+                ));
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    borderRadius:
+                        BorderRadius.circular(ThemeConstants.borderRadius)),
+                width: MediaQuery.of(context).size.width,
+                height: 65,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:  [
+                    Text(
+                      'Continue',
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.onPrimary,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 16,
-                  ),
-                  Icon(
-                    CupertinoIcons.arrow_right,
-                    color: Color(0xffffffff),
-                  )
-                ],
+                    const SizedBox(
+                      width: 16,
+                    ),
+                     Icon(
+                      CupertinoIcons.arrow_right,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                    )
+                  ],
+                ),
               ),
             ),
             const SizedBox(
