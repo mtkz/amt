@@ -16,6 +16,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   StreamSubscription? _streamSubscription;
   @override
   Widget build(BuildContext newContext) {
@@ -65,10 +67,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius:
                         BorderRadius.circular(ThemeConstants.borderRadius),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(2),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _usernameController,
+                      decoration: const InputDecoration(
                           label: Text('Email or Phone'),
                           prefixIcon: Icon(CupertinoIcons.person)),
                     ),
@@ -86,13 +89,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     borderRadius:
                         BorderRadius.circular(ThemeConstants.borderRadius),
                   ),
-                  child: const Padding(
-                    padding: EdgeInsets.all(2),
+                  child: Padding(
+                    padding: const EdgeInsets.all(2),
                     child: TextField(
                       obscureText: true,
                       enableSuggestions: false,
                       autocorrect: false,
-                      decoration: InputDecoration(
+                      controller: _password,
+                      decoration: const InputDecoration(
                         label: Text('Password'),
                         prefixIcon: Icon(CupertinoIcons.lock),
                         suffixIcon: Icon(CupertinoIcons.eye_slash),
@@ -120,8 +124,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 InkWell(
                   onTap: () {
-                    BlocProvider.of<AuthBloc>(newContext)
-                        .add(AuthButtonClicked());
+                    BlocProvider.of<AuthBloc>(newContext).add(AuthButtonClicked(
+                      identifier: _usernameController.text,
+                      password: _password.text,
+                    ));
                   },
                   child: Container(
                     decoration: BoxDecoration(

@@ -13,7 +13,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         if (event is AuthButtonClicked) {
           emit(AuthStarted());
-          await AuthRepository().login();
+          await AuthRepository().login(
+            event.identifier,
+            event.password,
+          );
           emit(AuthSuccess());
         }
       } catch (e) {

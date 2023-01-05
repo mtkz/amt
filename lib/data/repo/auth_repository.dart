@@ -5,5 +5,6 @@ class AuthRepository extends IAuthDataSource {
   AuthDataSource datasource = AuthDataSource();
 
   @override
-  Future<AuthInfo> login() => datasource.login();
+  Future<AuthInfo> login(String identifier, String password) =>
+      datasource.login(identifier, password);
 }
