@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: themeData,
+      debugShowCheckedModeBanner: false,
       home: const RootScreen(),
     );
   }
@@ -24,7 +25,9 @@ class RootScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: LoginScreen(),
+      body: SafeArea(
+        child: LoginScreen(),
+      ),
     );
   }
 }
