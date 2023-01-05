@@ -32,7 +32,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ));
           } else if (state is AuthError) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('خطا رخ داده است')),
+              const SnackBar(content: Text('An Error Occured')),
             );
           }
         });
@@ -89,7 +89,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: const Padding(
                     padding: EdgeInsets.all(2),
                     child: TextField(
-                      
+                      obscureText: true,
+                      enableSuggestions: false,
+                      autocorrect: false,
                       decoration: InputDecoration(
                         label: Text('Password'),
                         prefixIcon: Icon(CupertinoIcons.lock),
@@ -128,25 +130,33 @@ class _LoginScreenState extends State<LoginScreen> {
                             BorderRadius.circular(ThemeConstants.borderRadius)),
                     width: MediaQuery.of(newContext).size.width,
                     height: 65,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Continue',
-                          style: TextStyle(
-                            color: Theme.of(newContext).colorScheme.onPrimary,
-                            fontWeight: FontWeight.bold,
+                    child: state is AuthStarted
+                        ? Center(
+                            child: CircularProgressIndicator(
+                                color: Theme.of(context).colorScheme.onPrimary),
+                          )
+                        : Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Continue',
+                                style: TextStyle(
+                                  color: Theme.of(newContext)
+                                      .colorScheme
+                                      .onPrimary,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 16,
+                              ),
+                              Icon(
+                                CupertinoIcons.arrow_right,
+                                color:
+                                    Theme.of(newContext).colorScheme.onPrimary,
+                              )
+                            ],
                           ),
-                        ),
-                        const SizedBox(
-                          width: 16,
-                        ),
-                        Icon(
-                          CupertinoIcons.arrow_right,
-                          color: Theme.of(newContext).colorScheme.onPrimary,
-                        )
-                      ],
-                    ),
                   ),
                 ),
                 const SizedBox(

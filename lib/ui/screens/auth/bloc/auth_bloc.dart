@@ -12,9 +12,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthEvent>((event, emit) async {
       try {
         if (event is AuthButtonClicked) {
-          emit(AuthLoading());
-          final response = await AuthRepository().login();
-          debugPrint(response.toString());
+          emit(AuthStarted());
+          await AuthRepository().login();
           emit(AuthSuccess());
         }
       } catch (e) {
