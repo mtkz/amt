@@ -12,6 +12,7 @@ ThemeData themeData = ThemeData(
   appBarTheme: AppBarTheme(
       color: ThemeColors.onPrimaryColor,
       iconTheme: IconThemeData(color: ThemeColors.defaultTextColor)),
+  scaffoldBackgroundColor: const Color(0xffffffff),
   inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.all(16),
       border: InputBorder.none,
