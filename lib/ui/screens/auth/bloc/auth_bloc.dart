@@ -21,7 +21,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         }
       } catch (e) {
         if (e is DioError) {
-          emit(AuthError(appException: AppException()));
+          // emit(AuthError(appException: AppException()));
         }
       }
     });
